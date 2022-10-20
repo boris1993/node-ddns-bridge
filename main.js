@@ -13,6 +13,9 @@ const server = http.createServer(async (req, res) => {
             let [status, message] = await cloudflareHandler.handle(zoneId, token, domain, address);
             res.writeHead(status).end(message);
             return;
+        case "/healthcheck":
+            res.writeHead(200).end();
+            return;
         default:
             res.writeHead(404).end("badagent");
             return;
