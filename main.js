@@ -14,7 +14,8 @@ const server = http.createServer(async (req, res) => {
             res.writeHead(status).end(message);
             return;
         case "/healthcheck":
-            res.writeHead(200).end();
+            console.log("Healthcheck API called");
+            res.writeHead(200).end("ok");
             return;
         default:
             res.writeHead(404).end("badagent");
