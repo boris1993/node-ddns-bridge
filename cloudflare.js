@@ -3,6 +3,8 @@ module.exports = {
 };
 
 const https = require("https");
+const { allowedNodeEnvironmentFlags } = require("process");
+const notification = require("./notification");
 
 const CLOUDFLARE_API_HOSTNAME = "api.cloudflare.com";
 
@@ -38,6 +40,7 @@ async function handle(zoneId, token, domain, address) {
         return sendResponse(500, "911");
     }
 
+    notification.sendNotification(domain, address);
     return sendGoodResponse();
 };
 
